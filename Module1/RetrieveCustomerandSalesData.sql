@@ -14,5 +14,6 @@ FROM SalesLT.Customer;
 -- The sales order number and revision number in the format <Order Number> (<Revision>) – for
 --example SO71774 (2).
 -- The order date converted to ANSI standard format (yyyy.mm.dd – for example 2015.01.31).
-SELECT SalesOrderNumber + '(' + TRY_CONVERT(varchar,RevisionNumber) + ')' AS SalesOrder, TRY_CONVERT(date,OrderDate)
+SELECT SalesOrderNumber + '(' + TRY_CONVERT(varchar,RevisionNumber) + ')' AS SalesOrder, 
+	TRY_CONVERT(nvarchar(30),OrderDate,102) AS OrderDate
 FROM SalesLT.SalesOrderHeader

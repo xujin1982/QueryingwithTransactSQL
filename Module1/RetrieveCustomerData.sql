@@ -23,5 +23,5 @@ FROM SalesLT.Customer
 --  A column named CustomerName that displays how the customer contact should be greeted (for
 -- example, “Mr Smith”)
 --  The customer’s phone number.
-SELECT SalesPerson, Title + LastName AS CustomerName, Phone
+SELECT SalesPerson, Title + ' ' + LastName AS CustomerName, Phone
 FROM SalesLT.Customer

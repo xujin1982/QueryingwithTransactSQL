@@ -26,8 +26,8 @@ FROM SalesLT.Customer;
 
 --3. Retrieve shipping status
 --You have been asked to create a query that returns a list of sales order IDs and order dates with a
---column named ShippingStatus that contains the text ¡°Shipped¡± for orders with a known ship date, and
---¡°Awaiting Shipment¡± for orders with no ship date.
+--column named ShippingStatus that contains the text Â¡Â°ShippedÂ¡Â± for orders with a known ship date, and
+--Â¡Â°Awaiting ShipmentÂ¡Â± for orders with no ship date.
 
 --UPDATE SalesLT.SalesOrderHeader
 --SET ShipDate = NULL

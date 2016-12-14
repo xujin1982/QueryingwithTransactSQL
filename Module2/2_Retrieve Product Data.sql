@@ -23,4 +23,4 @@ WHERE ProductNumber LIKE 'BK-%';
 --any two numerals.
 SELECT ProductNumber, Name, ListPrice
 FROM SalesLT.Product 
-WHERE ProductNumber LIKE 'BK-%' AND ProductNumber NOT LIKE 'BK-R%' AND ProductNumber LIKE '%-[0-9][0-9]';
+WHERE ProductNumber LIKE 'BK-[^R]%-[0-9][0-9]';

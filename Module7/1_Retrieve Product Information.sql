@@ -1,7 +1,7 @@
 --1. Retrieve product model descriptions
 --Retrieve the product ID, product name, product model name, and product model summary for each
 --product from the SalesLT.Product table and the SalesLT.vProductModelCatalogDescription view.
-SELECT p.ProductID, p.Name, vpmd.ProductModelID, vpmd.Summary
+SELECT p.ProductID, p.Name AS ProductName, vpmd.Name AS ProductModel, vpmd.Summary
 FROM SalesLT.Product AS p
 JOIN SalesLT.vProductModelCatalogDescription AS vpmd
 ON p.ProductModelID = vpmd.ProductModelID;
@@ -25,7 +25,8 @@ WHERE Color IN (SELECT Color FROM @Colors)
 --which returns a table of product categories (for example ¡®Road Bikes¡¯) and parent categories (for
 --example ¡®Bikes¡¯). Write a query that uses this function to return a list of all products including their
 --parent category and category.
-SELECT Name, ProductCategoryName AS Category, ParentProductCategoryName AS ParentCategory
+SELECT p.ProductID, Name AS ProductName, ProductCategoryName AS Category, ParentProductCategoryName AS ParentCategory
 FROM SalesLT.Product AS p
 JOIN dbo.ufnGetAllCategories() AS ufn
 ON p.ProductCategoryID = ufn.ProductCategoryID
+ORDER BY ParentCategory, Category, ProductName;

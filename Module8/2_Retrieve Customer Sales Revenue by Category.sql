@@ -25,4 +25,5 @@ PIVOT
 	(
 		[Accessories], [Bikes], [Clothing], [Components]
 	)
-) AS PivotTable;
+) AS PivotTable
+ORDER BY CompanyName;

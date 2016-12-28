@@ -9,9 +9,11 @@ INSERT INTO SalesLT.Product (Name, ProductNumber, StandardCost, ListPrice, Produ
 VALUES
 ('LED Lights', 'LT-L123', 2.56, 12.99, 37, GETDATE());
 
+SELECT SCOPE_IDENTITY();
+
 SELECT *
 FROM SalesLT.Product
-WHERE Name = 'LED Lights';
+WHERE ProductID = SCOPE_IDENTITY();
 
 --2. Insert a new category with two products
 --Adventure Works is adding a product category for ¡®Bells and Horns¡¯ to its catalog. The parent category for
@@ -30,17 +32,13 @@ INSERT INTO SalesLT.ProductCategory (ParentProductCategoryID, Name, ModifiedDate
 VALUES
 (4, 'Bells and Horns', GETDATE());
 
-SELECT SCOPE_IDENTITY();
-
 INSERT INTO SalesLT.Product (Name, ProductNumber, StandardCost, ListPrice, ProductCategoryID, SellStartDate)
 VALUES
-('Bicycle Bell', 'BB-RING', 2.47, 4.99, 42, GETDATE()),
-('Bicycle Horn', 'BB-PARP', 1.29, 3.75, 42, GETDATE());
+('Bicycle Bell', 'BB-RING', 2.47, 4.99, IDENT_CURRENT('SalesLT.ProductCategory'), GETDATE()),
+('Bicycle Horn', 'BB-PARP', 1.29, 3.75, IDENT_CURRENT('SalesLT.ProductCategory'), GETDATE());
 
-SELECT *
-FROM SalesLT.Product
-WHERE ProductCategoryID = 42;
-
-SELECT *
-FROM SalesLT.ProductCategory
-WHERE ProductCategoryID = 42;
+SELECT c.Name AS Category, p.Name AS Product
+FROM SalesLT.Product ASp
+JOIN SalesLT.ProductCategory AS c
+ON p.ProductCategoryID = c.ProductCategoryID
+WHERE ProductCategoryID = IDENT_CURRENT('SalesLT.ProductCategory');
